@@ -1,0 +1,33 @@
+[tool.ruff]
+target-version = "py313"
+line-length = 150
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812",  # conflicts with the formatter
+    "D203",    # one blank line before class docstring
+    "D213",    # multi-line docstring summary on the second line
+    "FBT",     # boolean positional arguments
+    "PLR2004", # magic values: protocol bytes are clearer inline
+    "TRY003",  # long messages in exceptions
+    "EM101",   # literal strings in exceptions
+    "EM102",   # f-strings in exceptions
+    "G004",    # f-strings in logging
+    "CPY001",  # copyright notice in each file
+    "D105",    # docstrings on magic methods
+    "D107",    # docstrings on __init__
+    "TC001",   # type-checking-only imports: they break mock.patch, as in Home Assistant core
+    "TC002",
+    "TC003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "SLF001", "PLR0913", "PLR0917", "ARG001", "D401", "PT022"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "--cov=custom_components.ehc_led_panel --cov-report=term-missing:skip-covered --cov-fail-under=90"

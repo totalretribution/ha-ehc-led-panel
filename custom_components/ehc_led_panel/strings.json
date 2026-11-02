@@ -1,0 +1,122 @@
+{
+  "config": {
+    "progress": {
+      "listen": "Press a button on the light's remote, close to an ESPHome board. Listening for {seconds} seconds."
+    },
+    "step": {
+      "nothing_heard": {
+        "title": "Nothing heard",
+        "description": "No remote press was heard. Check the board is close to the remote, and that the remote's battery is fine.",
+        "menu_options": { "listen": "Listen again" }
+      },
+      "pick": {
+        "title": "Choose the remote",
+        "description": "A light reacts to presses with group 0 and to its own group. Choose the group the light is paired to on this remote: 1 for most lights. A group 1 or group 2 press selects it for you.",
+        "data": { "remote_id": "Remote", "group": "Group the light is paired to" }
+      },
+      "test": {
+        "title": "Test",
+        "description": "Sending power twice to remote {remote}, group {group}, from {board}. The light should turn off and on again, or on and off again.",
+        "menu_options": {
+          "name": "It did: continue",
+          "test": "Send again",
+          "other_group": "It didn't: try the other group",
+          "listen": "Listen to the remote again"
+        }
+      },
+      "name": {
+        "title": "Name the light",
+        "data": { "name": "Name", "proxy": "ESPHome board that sends to the light" }
+      }
+    },
+    "abort": {
+      "no_boards": "No ESPHome board able to send was found. The boards need the ble_adv_proxy component with the adv_svc_v2 service.",
+      "already_configured": "This remote and group is already set up."
+    }
+  },
+  "options": {
+    "progress": {
+      "listen": "Press a button on the other remote, close to an ESPHome board. Listening for {seconds} seconds."
+    },
+    "step": {
+      "init": {
+        "menu_options": {
+          "board": "Change the sending board",
+          "listen": "Link another remote",
+          "remove": "Remove linked remotes"
+        }
+      },
+      "board": {
+        "title": "Sending board",
+        "data": { "proxy": "ESPHome board that sends to the light" }
+      },
+      "nothing_heard": {
+        "title": "Nothing heard",
+        "description": "No remote press was heard.",
+        "menu_options": { "listen": "Listen again" }
+      },
+      "pick": {
+        "title": "Link a remote",
+        "description": "The light will follow presses from this remote too. Choose the group the light is paired to on it.",
+        "data": { "remote_id": "Remote", "group": "Group the light is paired to" }
+      },
+      "remove": {
+        "title": "Remove linked remotes",
+        "description": "The first remote can't be removed: it's the one the light is sent as.",
+        "data": { "remove": "Remotes to remove" }
+      }
+    },
+    "abort": {
+      "already_linked": "This remote and group is already linked to the light.",
+      "nothing_to_remove": "Only the first remote is linked, and it can't be removed."
+    }
+  },
+  "selector": {
+    "group": {
+      "options": { "1": "Group 1", "2": "Group 2" }
+    }
+  },
+  "entity": {
+    "button": {
+      "power": { "name": "Power" },
+      "night": { "name": "Night" },
+      "max": { "name": "Max" },
+      "brighter": { "name": "Brighter" },
+      "dimmer": { "name": "Dimmer" },
+      "warmer": { "name": "Warmer" },
+      "cooler": { "name": "Cooler" }
+    },
+    "event": {
+      "remote": {
+        "name": "Remote",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "power": "Power",
+              "night": "Night",
+              "max": "Max",
+              "brighter": "Brighter",
+              "dimmer": "Dimmer",
+              "cooler": "Cooler",
+              "warmer": "Warmer",
+              "max2": "Max (2)",
+              "group1": "Group 1",
+              "group2": "Group 2",
+              "other": "Other"
+            }
+          }
+        }
+      }
+    }
+  },
+  "services": {
+    "send_command": {
+      "name": "Send command",
+      "description": "Send a remote command to the light. A count above 1 is sent like a held button.",
+      "fields": {
+        "command": { "name": "Command", "description": "power, night, max, brighter, dimmer, cooler, warmer, max2, group1, group2, or a command number." },
+        "count": { "name": "Count", "description": "Number of presses, 0.21 s apart, like holding the button." }
+      }
+    }
+  }
+}

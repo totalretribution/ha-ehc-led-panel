@@ -1,0 +1,10 @@
+{
+  "domain": "ehc_led_panel",
+  "name": "EHC LED Panels",
+  "codeowners": [],
+  "config_flow": true,
+  "integration_type": "device",
+  "iot_class": "assumed_state",
+  "requirements": [],
+  "version": "0.1.0"
+}

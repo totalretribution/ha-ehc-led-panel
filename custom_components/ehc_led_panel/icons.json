@@ -1,0 +1,19 @@
+{
+  "entity": {
+    "button": {
+      "power": { "default": "mdi:power" },
+      "night": { "default": "mdi:weather-night" },
+      "max": { "default": "mdi:brightness-7" },
+      "brighter": { "default": "mdi:brightness-5" },
+      "dimmer": { "default": "mdi:brightness-4" },
+      "warmer": { "default": "mdi:thermometer-plus" },
+      "cooler": { "default": "mdi:snowflake" }
+    },
+    "event": {
+      "remote": { "default": "mdi:remote" }
+    }
+  },
+  "services": {
+    "send_command": { "service": "mdi:remote" }
+  }
+}
