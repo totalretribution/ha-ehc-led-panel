@@ -44,3 +44,7 @@ Tests use `pytest-homeassistant-custom-component`:
 ```bash
 ruff format . && ruff check . && pytest
 ```
+
+## Licence
+
+[GNU General Public License v3.0](LICENSE).
