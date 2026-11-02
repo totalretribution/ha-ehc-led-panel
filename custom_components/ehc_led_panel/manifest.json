@@ -3,8 +3,10 @@
   "name": "EHC LED Panels",
   "codeowners": [],
   "config_flow": true,
+  "documentation": "https://github.com/totalretribution/ha-ehc-led-panel",
   "integration_type": "device",
   "iot_class": "assumed_state",
+  "issue_tracker": "https://github.com/totalretribution/ha-ehc-led-panel/issues",
   "requirements": [],
   "version": "0.1.0"
 }
